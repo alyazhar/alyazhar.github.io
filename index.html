@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nur Alya Binti Mohd Azhar — e-Portfolio | PICKR</title>
+<meta name="description" content="Mobile Programming e-Portfolio showcasing PICKR, a civic engagement app for SDG 16: Peace, Justice and Strong Institutions.">
+<style>
+  :root{
+    --navy: #10182b;
+    --navy-2: #1a2540;
+    --paper: #f4f1e8;
+    --gold: #d4a937;
+    --gold-soft: #f0d896;
+    --ink: #1a1a1a;
+    --muted: #6b7280;
+    --line: rgba(244,241,232,0.14);
+    --line-dark: rgba(16,24,43,0.12);
+    --radius: 14px;
+    --max: 1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family: 'Source Sans Pro', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  a{color: inherit;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    color: var(--paper);
+    border-bottom: 3px solid var(--gold);
+  }
+  .nav-inner{
+    max-width: var(--max);
+    margin: 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 0.85rem 1.5rem;
+    gap: 1rem;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    font-family:'Georgia', serif;
+    font-weight:800;
+    font-size:1.25rem;
+    letter-spacing: 0.04em;
+    white-space:nowrap;
+  }
+  .brand .seal{
+    width: 30px; height: 30px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: var(--gold);
+    flex-shrink:0;
+  }
+  nav.links{
+    display:flex;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  nav.links a{
+    text-decoration:none;
+    color: var(--paper);
+    opacity: 0.78;
+    position: relative;
+    padding: 0.25rem 0;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+  nav.links a:hover{ opacity:1; color: var(--gold-soft); }
+  nav.links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:-2px;
+    width:0; height:2px;
+    background: var(--gold);
+    transition: width 0.25s ease;
+  }
+  nav.links a:hover::after{ width:100%; }
+
+  @media (max-width: 760px){
+    .nav-inner{ flex-direction: column; align-items:flex-start; gap:0.6rem; padding: 0.85rem 1.25rem;}
+    nav.links{ gap: 0.9rem 1.1rem; font-size: 0.85rem; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+    padding: 5.5rem 1.5rem 6rem;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 85% 20%, rgba(212,169,55,0.18), transparent 45%),
+      radial-gradient(circle at 10% 80%, rgba(212,169,55,0.10), transparent 40%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    max-width: var(--max);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    border: 1px solid rgba(212,169,55,0.4);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 1.05;
+    margin-bottom: 1.1rem;
+  }
+  .hero h1 .accent{ color: var(--gold); }
+  .hero p.lede{
+    max-width: 620px;
+    font-size: 1.08rem;
+    color: rgba(244,241,232,0.82);
+    margin-bottom: 2rem;
+  }
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 1.6rem 2.4rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.6rem;
+  }
+  .hero-meta dt{
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(244,241,232,0.5);
+    margin-bottom: 0.25rem;
+  }
+  .hero-meta dd{
+    margin:0;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family:'Georgia', serif;
+  }
+  .sdg-pin{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    background: rgba(212,169,55,0.12);
+    border:1px solid rgba(212,169,55,0.35);
+    border-radius: 999px;
+    padding: 0.45rem 1rem 0.45rem 0.5rem;
+    margin-top: 1.6rem;
+    font-size: 0.88rem;
+  }
+  .sdg-pin .num{
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 900;
+    font-family:'Georgia', serif;
+    width: 34px; height:34px;
+    border-radius: 8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 0.95rem;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  main section{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem;
+  }
+  .section-head{
+    margin-bottom: 2.6rem;
+  }
+  .section-head .tag{
+    display:block;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+  }
+  .section-head h2{
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    color: var(--navy);
+  }
+  .section-head p{
+    color: var(--muted);
+    max-width: 640px;
+    margin-top: 0.7rem;
+  }
+
+  /* ---------- BALLOT CARD (signature element) ---------- */
+  .ballot{
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(16,24,43,0.04);
+    margin-bottom: 2.2rem;
+    position: relative;
+  }
+  .ballot-grid{
+    display:grid;
+    grid-template-columns: 1.2fr 1fr;
+  }
+  @media (max-width: 820px){
+    .ballot-grid{ grid-template-columns: 1fr; }
+  }
+  .ballot-main{
+    padding: 1.8rem 2rem;
+    display:flex;
+    flex-direction:column;
+  }
+  .ballot-video{
+    position: relative;
+    background: var(--navy);
+  }
+  .ballot-video iframe{
+    width:100%;
+    height: 100%;
+    min-height: 230px;
+    display:block;
+    border:0;
+  }
+  .ballot-num{
+    font-family:'Georgia', serif;
+    font-weight:900;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .ballot-num::before{
+    content:"";
+    display:inline-block;
+    width: 22px; height: 1px;
+    background: var(--gold);
+  }
+  .ballot-main h3{
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+  .ballot-main .desc{
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.1rem;
+  }
+  .reflection{
+    background: var(--paper);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.93rem;
+    color: #444;
+    margin-top: auto;
+  }
+  .reflection .label{
+    display:block;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 800;
+    margin-bottom: 0.35rem;
+  }
+
+  /* perforation strip — ballot stub motif */
+  .ballot::before{
+    content:"";
+    position:absolute;
+    top:0; bottom:0;
+    left: calc(54.5% - 1px);
+    width:0;
+    border-left: 2px dashed rgba(16,24,43,0.12);
+    z-index: 2;
+  }
+  @media (max-width: 820px){ .ballot::before{ display:none; } }
+
+  /* ---------- PROJECT CARDS ---------- */
+  .project{
+    background: var(--navy);
+    color: var(--paper);
+    border-radius: var(--radius);
+    overflow:hidden;
+    margin-bottom: 2.4rem;
+    box-shadow: 0 8px 30px rgba(16,24,43,0.25);
+  }
+  .project-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.15fr;
+  }
+  @media (max-width: 860px){
+    .project-grid{ grid-template-columns:1fr; }
+  }
+  .project-video iframe{
+    width:100%; height:100%;
+    min-height: 260px;
+    display:block; border:0;
+  }
+  .project-body{
+    padding: 2.2rem 2.2rem;
+    display:flex;
+    flex-direction:column;
+  }
+  .project-tag{
+    display:inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+    width: fit-content;
+  }
+  .project-body h3{
+    font-size: 1.7rem;
+    margin-bottom: 0.4rem;
+    color: #fff;
+  }
+  .project-body .sub{
+    color: var(--gold-soft);
+    font-size: 0.9rem;
+    font-weight:700;
+    margin-bottom: 1rem;
+  }
+  .project-body .block-label{
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244,241,232,0.55);
+    margin-bottom: 0.35rem;
+    margin-top: 1.1rem;
+    font-weight: 800;
+  }
+  .project-body p{
+    margin: 0;
+    color: rgba(244,241,232,0.85);
+    font-size: 0.95rem;
+  }
+  .gh-btn{
+    margin-top: 1.6rem;
+    display:inline-flex;
+    align-items:center;
+    gap: 0.6rem;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration:none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.3rem;
+    border-radius: 999px;
+    width: fit-content;
+    transition: transform 0.18s ease, background 0.18s ease;
+  }
+  .gh-btn:hover{ background: var(--gold-soft); transform: translateY(-2px); }
+
+  /* ---------- REFLECTION (journey) ---------- */
+  .journey{
+    background: var(--navy);
+    color: var(--paper);
+    border-radius: var(--radius);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow:hidden;
+  }
+  .journey::after{
+    content:"“";
+    position:absolute;
+    top:-1.2rem; right:1.5rem;
+    font-family:'Georgia',serif;
+    font-size: 9rem;
+    color: rgba(212,169,55,0.12);
+    line-height:1;
+    pointer-events:none;
+  }
+  .journey p{
+    font-size: 1.15rem;
+    max-width: 720px;
+    color: rgba(244,241,232,0.92);
+    position: relative;
+    z-index:1;
+  }
+  .journey .sign{
+    margin-top: 1.6rem;
+    font-family:'Georgia', serif;
+    font-weight:700;
+    color: var(--gold-soft);
+    font-size: 0.95rem;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 0.7rem;
+  }
+  .skill-chip{
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .skill-chip:hover{
+    border-color: var(--gold);
+    background: var(--navy);
+    color: var(--gold-soft);
+  }
+
+  /* ---------- RESOURCES ---------- */
+  .resources-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 1.2rem;
+  }
+  .res-card{
+    background:#fff;
+    border:1px solid var(--line-dark);
+    border-radius: 12px;
+    padding: 1.3rem 1.4rem;
+  }
+  .res-card .tag2{
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    display:block;
+  }
+  .res-card ul{
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.92rem;
+    color: #444;
+  }
+  .res-card li{ margin-bottom: 0.3rem; }
+  .ai-note{
+    grid-column: 1 / -1;
+    background: var(--paper);
+    border: 1px dashed var(--gold);
+    border-radius: 12px;
+    padding: 1.3rem 1.4rem;
+    font-size: 0.92rem;
+    color: #444;
+  }
+  .ai-note strong{ color: var(--navy); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--navy);
+    color: rgba(244,241,232,0.65);
+    text-align:center;
+    padding: 2.4rem 1.5rem;
+    font-size: 0.88rem;
+    border-top: 3px solid var(--gold);
+  }
+  footer .fname{
+    color: var(--paper);
+    font-family:'Georgia', serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* accessibility: visible focus */
+  a:focus-visible, button:focus-visible{
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior:auto !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="seal">16</span> PICKR e-Portfolio</div>
+    <nav class="links" aria-label="Section navigation">
+      <a href="#home">Home</a>
+      <a href="#labs">Labs</a>
+      <a href="#projects">Projects</a>
+      <a href="#reflection">Reflection</a>
+      <a href="#skills">Skills</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HOME / HERO ================= -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Mobile Programming · TK2323 / TM2213</span>
+      <h1>Building <span class="accent">PICKR</span> —<br>a platform for civic voice.</h1>
+      <p class="lede">
+        PICKR is a civic engagement mobile application that lets people create polls, join consultations,
+        and make collective decisions in a simple, transparent way. Across this semester I used Jetpack Compose,
+        Navigation, Room Database, Firebase, GPS, and API integration to turn that idea into a working
+        Android application — built in service of community participation.
+      </p>
+
+      <div class="sdg-pin">
+        <span class="num">16</span>
+        <span>SDG 16: Peace, Justice and Strong Institutions — because every fair decision starts with a system people can trust and take part in.</span>
+      </div>
+
+      <dl class="hero-meta">
+        <div>
+          <dt>Name</dt>
+          <dd>Nur Alya Binti Mohd Azhar</dd>
+        </div>
+        <div>
+          <dt>Matric No.</dt>
+          <dd>A210010</dd>
+        </div>
+        <div>
+          <dt>Programme</dt>
+          <dd>Software Engineering</dd>
+        </div>
+        <div>
+          <dt>Instructor</dt>
+          <dd>Dr Nazatul Aini Binti Abd Majid</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ================= LABS ================= -->
+  <section id="labs">
+    <div class="section-head">
+      <span class="tag">Lab Journal · 01–05</span>
+      <h2>From layout to local storage</h2>
+      <p>Five labs, each a building block of PICKR — from the first sketch of the interface to a fully persistent, multi-screen application.</p>
+    </div>
+
+    <!-- Lab 1 -->
+    <article class="ballot">
+      <div class="ballot-grid">
+        <div class="ballot-main">
+          <span class="ballot-num">Lab 01</span>
+          <h3>User Interface with Jetpack Compose</h3>
+          <p class="desc">Structuring the first version of PICKR's interface using Column, Row, and Box.</p>
+          <div class="reflection">
+            <span class="label">Reflection</span>
+            Through Lab 1, I learned how to build a structured user interface using Column, Row, and Box in Jetpack Compose. I designed the initial version of Pickr by creating a clean layout inspired by Pollie while adapting it to support SDG 16 goals. This lab helped me understand how different layout components work together to create an organized and user-friendly interface.
+          </div>
+        </div>
+        <div class="ballot-video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_LAB1" title="Lab 1 — User Interface demo video" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lab 2 -->
+    <article class="ballot">
+      <div class="ballot-grid">
+        <div class="ballot-main">
+          <span class="ballot-num">Lab 02</span>
+          <h3>Interaction &amp; State Management</h3>
+          <p class="desc">Making the interface respond instantly using remember and mutableStateOf.</p>
+          <div class="reflection">
+            <span class="label">Reflection</span>
+            In Lab 2, I learned how to manage user interactions and dynamic UI updates using remember and mutableStateOf. Users could create a poll question and immediately see the updated content on the screen without refreshing the application. This experience helped me understand the importance of state management in creating responsive and interactive mobile applications.
+          </div>
+        </div>
+        <div class="ballot-video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_LAB2" title="Lab 2 — Interaction demo video" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lab 3 -->
+    <article class="ballot">
+      <div class="ballot-grid">
+        <div class="ballot-main">
+          <span class="ballot-num">Lab 03</span>
+          <h3>Material Design 3</h3>
+          <p class="desc">Refining PICKR's visual language with a consistent purple theme and expandable cards.</p>
+          <div class="reflection">
+            <span class="label">Reflection</span>
+            Lab 3 focused on improving the visual design and user experience of Pickr using Material Design 3. I implemented a consistent purple theme, custom typography, card-based layouts, and expandable animations to make the application more engaging and organized. Through this lab, I learned how thoughtful design choices can improve both usability and accessibility.
+          </div>
+        </div>
+        <div class="ballot-video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_LAB3" title="Lab 3 — Material Design demo video" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lab 4 -->
+    <article class="ballot">
+      <div class="ballot-grid">
+        <div class="ballot-main">
+          <span class="ballot-num">Lab 04</span>
+          <h3>Navigation Compose</h3>
+          <p class="desc">Connecting Login, Home, Create Poll, Results, and Profile into one app flow.</p>
+          <div class="reflection">
+            <span class="label">Reflection</span>
+            In Lab 4, I implemented Navigation Compose to transform Pickr into a multi-screen application. I created navigation flows between the Login, Home, Create Poll, Results, and Profile screens while using a ViewModel to manage shared data across screens. This lab strengthened my understanding of navigation architecture and state management in modern Android development.
+          </div>
+        </div>
+        <div class="ballot-video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_LAB4" title="Lab 4 — Navigation demo video" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lab 5 -->
+    <article class="ballot">
+      <div class="ballot-grid">
+        <div class="ballot-main">
+          <span class="ballot-num">Lab 05</span>
+          <h3>Room Database</h3>
+          <p class="desc">Giving PICKR persistent memory with Entity, DAO, Repository, and Flow/StateFlow.</p>
+          <div class="reflection">
+            <span class="label">Reflection</span>
+            Lab 5 introduced persistent local storage through Room Database integration. I implemented Entity, DAO, Repository, and ViewModel components to store polls permanently and automatically update the interface using Flow and StateFlow. This lab helped me understand how real-world applications manage data persistence and maintain consistency between the database and UI.
+          </div>
+        </div>
+        <div class="ballot-video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_LAB5" title="Lab 5 — Room Database demo video" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects">
+    <div class="section-head">
+      <span class="tag">The Application · 02 Milestones</span>
+      <h2>PICKR, end to end</h2>
+      <p>Two milestone builds: from a navigable, working prototype to a full application connected to the cloud, APIs, and device sensors.</p>
+    </div>
+
+    <!-- Project 1 -->
+    <article class="project">
+      <div class="project-grid">
+        <div class="project-video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_PROJECT1" title="Project 1 — PICKR working features demo" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="project-body">
+          <span class="project-tag">Project 01 · Working Features</span>
+          <h3>PICKR</h3>
+          <p class="sub">Lab 4 + a complete navigable prototype</p>
+          <div class="block-label">Problem Statement</div>
+          <p>Many students and community members lack a simple and engaging platform to participate in discussions and collective decision-making. Existing systems are often complicated, reducing participation and transparency.</p>
+          <div class="block-label">Lessons Learned</div>
+          <p>Project 1 allowed me to combine concepts from previous labs into a complete Android application. I applied Material Design, Navigation Compose, ViewModel shared state, and dynamic UI updates to create a functional polling platform. Through this project, I learned the importance of application architecture, code organization, and designing features that support meaningful community participation.</p>
+          <a class="gh-btn" href="https://github.com/your-username/pickr-project1" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project">
+      <div class="project-grid">
+        <div class="project-video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_PROJECT2" title="Project 2 — PICKR full integration demo" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="project-body">
+          <span class="project-tag">Project 02 · API, Sensors &amp; Cloud</span>
+          <h3>PICKR</h3>
+          <p class="sub">Lab 5 + Room, API, sensors, and cloud integration</p>
+          <div class="block-label">Problem Statement</div>
+          <p>Community members often struggle to stay engaged with civic discussions due to limited access to consultation information and participation tools. There is a need for a mobile platform that combines data management, cloud services, and real-time information access to encourage greater civic engagement.</p>
+          <div class="block-label">Lessons Learned</div>
+          <p>Project 2 expanded my understanding of modern mobile development by integrating Room Database, APIs, cloud services, and device capabilities into a single application. I learned how different technologies work together to provide real-time data synchronization and enhanced user experiences. This project also improved my debugging, problem-solving, and software integration skills.</p>
+          <a class="gh-btn" href="https://github.com/your-username/pickr-project2" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= REFLECTION ================= -->
+  <section id="reflection">
+    <div class="section-head">
+      <span class="tag">Learning Journey</span>
+      <h2>From Lab 1 to Project 2</h2>
+    </div>
+    <div class="journey">
+      <p>
+        My learning journey began with creating simple user interfaces and gradually progressed toward building a complete mobile application with multiple screens, persistent storage, and advanced integrations. Each lab introduced a new concept that directly contributed to the development of Pickr, allowing me to apply theory into practice. Throughout the semester, I improved my skills in Android development, debugging, UI design, and application architecture. Most importantly, I gained confidence in building real-world mobile applications that address meaningful social challenges through SDG 16.
+      </p>
+      <div class="sign">— Nur Alya Binti Mohd Azhar</div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section id="skills">
+    <div class="section-head">
+      <span class="tag">Tech Stack</span>
+      <h2>Tools &amp; technologies used</h2>
+    </div>
+    <div class="skills-wrap">
+      <span class="skill-chip">Kotlin</span>
+      <span class="skill-chip">Jetpack Compose</span>
+      <span class="skill-chip">Material Design 3</span>
+      <span class="skill-chip">Navigation Compose</span>
+      <span class="skill-chip">ViewModel</span>
+      <span class="skill-chip">State Management</span>
+      <span class="skill-chip">Room Database</span>
+      <span class="skill-chip">Flow &amp; StateFlow</span>
+      <span class="skill-chip">MVVM Architecture</span>
+      <span class="skill-chip">Android Studio</span>
+      <span class="skill-chip">Firebase</span>
+      <span class="skill-chip">REST API Integration</span>
+      <span class="skill-chip">GitHub</span>
+      <span class="skill-chip">UI/UX Design</span>
+    </div>
+  </section>
+
+  <!-- ================= RESOURCES ================= -->
+  <section id="resources">
+    <div class="section-head">
+      <span class="tag">Credits</span>
+      <h2>Resources &amp; acknowledgements</h2>
+    </div>
+    <div class="resources-grid">
+      <div class="res-card">
+        <span class="tag2">Libraries &amp; APIs</span>
+        <ul>
+          <li>Jetpack Compose &amp; Material Design 3</li>
+          <li>Navigation Compose</li>
+          <li>Room Database (Entity, DAO, Repository)</li>
+          <li>Kotlin Flow &amp; StateFlow</li>
+          <li>Firebase</li>
+          <li>REST API (Retrofit)</li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <span class="tag2">References</span>
+        <ul>
+          <li>Official Android Developer Documentation</li>
+          <li>Material Design 3 Guidelines</li>
+          <li>Course lab materials, TK2323 / TM2213</li>
+        </ul>
+      </div>
+      <div class="ai-note">
+        <strong>AI assistance acknowledgement:</strong> Portions of this e-Portfolio's HTML/CSS structure were generated with the assistance of an AI tool (Claude) based on a prompt provided in the course companion guide. All project content, reflections, and application development work are my own.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="fname">Nur Alya Binti Mohd Azhar</div>
+  <div>Matric No. A210010 · Software Engineering · TK2323/TM2213 Mobile Programming</div>
+  <div style="margin-top:0.5rem;">© 2026</div>
+</footer>
+
+</body>
+</html>
